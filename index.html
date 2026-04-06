@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Micheal Adetuga — Cybersecurity enthusiast & creative coder (vibecoder) based in Lagos, Nigeria. Third-year tech student passionate about security and software development." />
+  <meta name="keywords"
+    content="Micheal Adetuga, cybersecurity, vibecoder, software developer, Lagos, portfolio, tech student" />
+  <meta name="author" content="Micheal Adetuga" />
+  <title>Micheal Adetuga — Cybersecurity & Dev Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- =================== NAVBAR =================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" id="nav-logo">
+        <span class="logo-bracket">&lt;</span>MA<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about" class="nav-link" id="nav-about">About</a></li>
+        <li><a href="#skills" class="nav-link" id="nav-skills">Skills</a></li>
+        <li><a href="#experience" class="nav-link" id="nav-experience">Experience</a></li>
+        <li><a href="#projects" class="nav-link" id="nav-projects">Projects</a></li>
+        <li><a href="#contact" class="nav-link nav-cta" id="nav-contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- =================== HERO =================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-overlay"></div>
+    <canvas class="hero-canvas" id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge" id="hero-badge">
+        <span class="badge-dot"></span>Available for Opportunities
+      </div>
+      <h1 class="hero-title" id="hero-title">
+        <span class="hero-greeting">Hey, I'm</span>
+        <span class="hero-name">Micheal Adetuga</span>
+      </h1>
+      <p class="hero-tagline" id="hero-tagline">
+        <span class="typed-text" id="typed-text"></span><span class="cursor">|</span>
+      </p>
+      <p class="hero-description" id="hero-description">
+        Third-year CS student in Lagos 🇳🇬 — I secure systems, write clean code, and vibe-code my way to interesting
+        experiments.
+      </p>
+      <div class="hero-actions" id="hero-actions">
+        <a href="#contact" class="btn btn-primary" id="btn-contact-hero">Get In Touch</a>
+        <a href="#projects" class="btn btn-ghost" id="btn-view-work">View My Work</a>
+      </div>
+      <div class="hero-socials" id="hero-socials">
+        <a href="https://github.com/Michealadetuga" target="_blank" rel="noopener" class="social-link"
+          id="social-github" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+          </svg>
+        </a>
+        <a href="mailto:Michealadetuga7@gmail.com" class="social-link" id="social-email" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.908 1.528-1.147C21.69 2.28 24 3.434 24 5.457z" />
+          </svg>
+        </a>
+        <a href="tel:09151907027" class="social-link" id="social-phone" aria-label="Phone">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" id="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- =================== ABOUT =================== -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <span class="section-label">// about me</span>
+        <h2 class="section-title">Who I Am</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-card" data-animate>
+          <div class="about-avatar" id="about-avatar">
+            <div class="avatar-ring-wrap">
+              <div class="avatar-ring"></div>
+              <div class="avatar-photo-wrap">
+                <img src="micheal.jpg" alt="Micheal Adetuga" class="avatar-photo" />
+              </div>
+            </div>
+            <div class="avatar-status">
+              <span class="status-dot"></span>
+              <span>Open to Work</span>
+            </div>
+          </div>
+          <div class="about-quick-info">
+            <div class="info-chip" id="info-location">📍 Lagos, Nigeria</div>
+            <div class="info-chip" id="info-grad">🎓 Class of 2027</div>
+            <div class="info-chip" id="info-focus">🔐 Cybersecurity + Dev</div>
+          </div>
+        </div>
+        <div class="about-text-card" data-animate>
+          <p class="about-text">
+            I'm <strong>Micheal Adetuga</strong> — a third-year tech student based in Lagos, Nigeria, fueled by
+            curiosity, caffeine, and a stubborn love for problem-solving.
+          </p>
+          <p class="about-text">
+            My world sits at the intersection of <span class="highlight">cybersecurity</span> and <span
+              class="highlight">software development</span>. I spent 3 months as a cybersecurity intern, where I got
+            hands-on with threat detection, vulnerability analysis, and digital hygiene — and I haven't looked back
+            since.
+          </p>
+          <p class="about-text">
+            On the dev side, I'm what you'd call a <span class="highlight-purple">"vibecoder"</span> — someone who
+            thrives on creative coding, experimenting with ideas, and turning small concepts into working (and sometimes
+            weird) projects. I write code with intention but also with vibe ✨
+          </p>
+          <p class="about-text">
+            Ambitious, fast-learning, and always building — I'm on a mission to merge security expertise with creative
+            tech. Currently leveling up and expected to graduate in <strong>2027</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== SKILLS =================== -->
+  <section class="section skills-section" id="skills">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <span class="section-label">// skills</span>
+        <h2 class="section-title">What I Bring</h2>
+      </div>
+      <div class="skills-grid">
+
+        <div class="skill-category" data-animate id="skill-cybersec">
+          <div class="skill-category-header">
+            <div class="skill-icon">🔐</div>
+            <h3>Cybersecurity</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag" id="stag-1">Cybersecurity Fundamentals</span>
+            <span class="skill-tag" id="stag-2">Threat & Vulnerability Awareness</span>
+            <span class="skill-tag" id="stag-3">Network & System Basics</span>
+            <span class="skill-tag" id="stag-4">Digital Safety Best Practices</span>
+            <span class="skill-tag" id="stag-5">Basic Incident Response</span>
+          </div>
+        </div>
+
+        <div class="skill-category" data-animate id="skill-coding">
+          <div class="skill-category-header">
+            <div class="skill-icon">⚡</div>
+            <h3>Coding / Vibecoding</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag purple" id="stag-6">Creative Coding</span>
+            <span class="skill-tag purple" id="stag-7">Problem-Solving</span>
+            <span class="skill-tag purple" id="stag-8">Clean & Simple Code</span>
+            <span class="skill-tag purple" id="stag-9">Experimental Projects</span>
+          </div>
+        </div>
+
+        <div class="skill-category" data-animate id="skill-general">
+          <div class="skill-category-header">
+            <div class="skill-icon">🧠</div>
+            <h3>General Skills</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag mixed" id="stag-10">Teamwork</span>
+            <span class="skill-tag mixed" id="stag-11">Fast Learning</span>
+            <span class="skill-tag mixed" id="stag-12">Communication</span>
+            <span class="skill-tag mixed" id="stag-13">Analytical Thinking</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== EXPERIENCE =================== -->
+  <section class="section experience-section" id="experience">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <span class="section-label">// experience</span>
+        <h2 class="section-title">My Journey</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item" data-animate id="exp-intern">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Cybersecurity Intern</h3>
+                <p class="timeline-company">Tech Organization · Lagos, Nigeria</p>
+              </div>
+              <div class="timeline-badge">3 Months</div>
+            </div>
+            <ul class="timeline-duties">
+              <li>Learned system protection strategies, digital hygiene, and core cybersecurity principles in a
+                real-world environment.</li>
+              <li>Assisted in identifying vulnerabilities across systems and contributed to preliminary risk
+                assessments.</li>
+              <li>Supported basic incident analysis — helping document and triage security events.</li>
+              <li>Practiced and enforced safe security procedures, maintaining accurate documentation throughout.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tl-tag">Threat Analysis</span>
+              <span class="tl-tag">Incident Response</span>
+              <span class="tl-tag">Documentation</span>
+              <span class="tl-tag">Digital Hygiene</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-animate id="exp-edu">
+          <div class="timeline-dot edu"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Bachelor's Degree (In View)</h3>
+                <p class="timeline-company">University · Nigeria</p>
+              </div>
+              <div class="timeline-badge blue">Exp. 2027</div>
+            </div>
+            <ul class="timeline-duties">
+              <li>Currently in my third year, building a strong foundation in computer science and technology.</li>
+              <li>Actively applying coursework in real-world cybersecurity and development projects.</li>
+              <li>Committed to graduating in 2027 with hands-on technical experience alongside academics.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tl-tag blue">Computer Science</span>
+              <span class="tl-tag blue">Technology</span>
+              <span class="tl-tag blue">3rd Year</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== PROJECTS =================== -->
+  <section class="section projects-section" id="projects">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <span class="section-label">// projects</span>
+        <h2 class="section-title">What I've Built</h2>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card" data-animate id="proj-1">
+          <div class="project-card-top">
+            <div class="project-icon">🔒</div>
+            <div class="project-status">In Progress</div>
+          </div>
+          <h3 class="project-title">Cybersecurity Practice Lab Work</h3>
+          <p class="project-desc">
+            Hands-on security lab exercises exploring threat detection, network scanning, vulnerability assessment, and
+            basic ethical hacking techniques. A practical space to reinforce internship learnings.
+          </p>
+          <div class="project-tools">
+            <span class="tool-tag">Kali Linux</span>
+            <span class="tool-tag">Wireshark</span>
+            <span class="tool-tag">Nmap</span>
+            <span class="tool-tag">VMs</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/Michealadetuga" target="_blank" rel="noopener" class="btn btn-sm btn-outline"
+              id="proj-1-github">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+                <path
+                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+              </svg>
+              GitHub
+            </a>
+            <a href="#" class="btn btn-sm btn-primary" id="proj-1-preview">Preview →</a>
+          </div>
+        </div>
+
+        <div class="project-card featured" data-animate id="proj-2">
+          <div class="project-card-top">
+            <div class="project-icon">⚡</div>
+            <div class="project-status purple">Vibecoding</div>
+          </div>
+          <h3 class="project-title">Mini Coding Projects <span class="proj-sub">(Vibecoding Experiments)</span></h3>
+          <p class="project-desc">
+            A collection of small, creative, and experimental coding projects born from curiosity and caffeine. From fun
+            UI experiments to mini-tools — this is where ideas come to life with no rules, just vibes.
+          </p>
+          <div class="project-tools">
+            <span class="tool-tag">HTML/CSS</span>
+            <span class="tool-tag">JavaScript</span>
+            <span class="tool-tag">Python</span>
+            <span class="tool-tag">APIs</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/Michealadetuga" target="_blank" rel="noopener" class="btn btn-sm btn-outline"
+              id="proj-2-github">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+                <path
+                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+              </svg>
+              GitHub
+            </a>
+            <a href="#" class="btn btn-sm btn-primary" id="proj-2-preview">Preview →</a>
+          </div>
+        </div>
+
+        <div class="project-card" data-animate id="proj-3">
+          <div class="project-card-top">
+            <div class="project-icon">📚</div>
+            <div class="project-status mixed">Academic</div>
+          </div>
+          <h3 class="project-title">School Assignments & Tech Experiments</h3>
+          <p class="project-desc">
+            Academic projects and tech experiments that go beyond the classroom. Applying theory to practice through
+            assignments, demos, and personal research work that bridges coursework with real-world application.
+          </p>
+          <div class="project-tools">
+            <span class="tool-tag">Python</span>
+            <span class="tool-tag">C++</span>
+            <span class="tool-tag">Linux</span>
+            <span class="tool-tag">Research</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/Michealadetuga" target="_blank" rel="noopener" class="btn btn-sm btn-outline"
+              id="proj-3-github">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+                <path
+                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+              </svg>
+              GitHub
+            </a>
+            <a href="#" class="btn btn-sm btn-primary" id="proj-3-preview">Preview →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== CONTACT =================== -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <span class="section-label">// contact</span>
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-subtitle">Have an opportunity, a project idea, or just want to say hi? My inbox is always
+          open.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card" data-animate id="contact-email">
+          <div class="contact-icon">✉️</div>
+          <h3>Email Me</h3>
+          <p>Michealadetuga7@gmail.com</p>
+          <a href="mailto:Michealadetuga7@gmail.com" class="btn btn-primary" id="btn-email">Send Email</a>
+        </div>
+        <div class="contact-card" data-animate id="contact-phone">
+          <div class="contact-icon">📞</div>
+          <h3>Call / WhatsApp</h3>
+          <p>0915 190 7027</p>
+          <a href="tel:09151907027" class="btn btn-primary" id="btn-call">Call Now</a>
+        </div>
+        <div class="contact-card" data-animate id="contact-github">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+              <path
+                d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+            </svg>
+          </div>
+          <h3>GitHub</h3>
+          <p>@Michealadetuga</p>
+          <a href="https://github.com/Michealadetuga" target="_blank" rel="noopener" class="btn btn-primary"
+            id="btn-github">View Profile</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== FOOTER =================== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="#hero" class="footer-logo" id="footer-logo">
+          <span class="logo-bracket">&lt;</span>MA<span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-text">
+          Crafted with ✨ vibes & 🔐 security in mind.<br />
+          © 2025 Micheal Adetuga · Lagos, Nigeria
+        </p>
+        <div class="footer-links">
+          <a href="https://github.com/Michealadetuga" target="_blank" rel="noopener" class="footer-link"
+            id="footer-github">GitHub</a>
+          <a href="mailto:Michealadetuga7@gmail.com" class="footer-link" id="footer-email">Email</a>
+          <a href="tel:09151907027" class="footer-link" id="footer-phone">Phone</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
