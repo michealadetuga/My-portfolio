@@ -19,6 +19,10 @@
 </head>
 
 <body>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-outline" id="cursor-outline" aria-hidden="true"></div>
+  <div class="mouse-glow" id="mouse-glow" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
   <!-- =================== NAVBAR =================== -->
   <nav class="navbar" id="navbar">
@@ -29,8 +33,10 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#about" class="nav-link" id="nav-about">About</a></li>
         <li><a href="#skills" class="nav-link" id="nav-skills">Skills</a></li>
+        <li><a href="#services" class="nav-link" id="nav-services">Services</a></li>
         <li><a href="#experience" class="nav-link" id="nav-experience">Experience</a></li>
         <li><a href="#projects" class="nav-link" id="nav-projects">Projects</a></li>
+        <li><a href="#testimonials" class="nav-link" id="nav-reviews">Reviews</a></li>
         <li><a href="#contact" class="nav-link nav-cta" id="nav-contact">Contact</a></li>
       </ul>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -42,6 +48,24 @@
   <!-- =================== HERO =================== -->
   <section class="hero" id="hero">
     <div class="hero-bg-overlay"></div>
+    <div class="parallax-scene" aria-hidden="true">
+      <div class="parallax-layer parallax-image" data-depth="0.16"></div>
+      <div class="parallax-layer parallax-grid" data-depth="0.32"></div>
+      <div class="parallax-layer parallax-circuit" data-depth="0.48"></div>
+      <div class="parallax-panel panel-1" data-depth="0.72">
+        <span>SEC</span>
+        <strong>01</strong>
+      </div>
+      <div class="parallax-panel panel-2" data-depth="0.58">
+        <span>DEV</span>
+        <strong>07</strong>
+      </div>
+      <div class="parallax-panel panel-3" data-depth="0.84">
+        <span>LAB</span>
+        <strong>27</strong>
+      </div>
+      <div class="parallax-scan" data-depth="0.38"></div>
+    </div>
     <canvas class="hero-canvas" id="hero-canvas"></canvas>
     <div class="hero-content">
       <div class="hero-badge" id="hero-badge">
@@ -55,8 +79,8 @@
         <span class="typed-text" id="typed-text"></span><span class="cursor">|</span>
       </p>
       <p class="hero-description" id="hero-description">
-        Third-year CS student in Lagos 🇳🇬 — I secure systems, write clean code, and vibe-code my way to interesting
-        experiments.
+        Third-year CS student in Lagos, Nigeria. I build secure, high-performance web experiences and experiment at the
+        edge of cybersecurity, code, and creative product ideas.
       </p>
       <div class="hero-actions" id="hero-actions">
         <a href="#contact" class="btn btn-primary" id="btn-contact-hero">Get In Touch</a>
@@ -137,6 +161,20 @@
             Ambitious, fast-learning, and always building — I'm on a mission to merge security expertise with creative
             tech. Currently leveling up and expected to graduate in <strong>2027</strong>.
           </p>
+          <div class="stats-strip" id="stats-strip">
+            <div class="stat-item">
+              <span class="stat-val" data-count="12">0</span>
+              <span class="stat-label">GitHub Projects</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-val" data-count="3">0</span>
+              <span class="stat-label">Months Internship</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-val" data-count="2027">0</span>
+              <span class="stat-label">Graduation Track</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -194,6 +232,47 @@
       </div>
     </div>
   </section>
+
+  <!-- =================== SERVICES =================== -->
+  <section class="section services-section" id="services">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <span class="section-label">// services</span>
+        <h2 class="section-title">Solutions I Can Build</h2>
+        <p class="section-subtitle">A cleaner merge from my other portfolio: practical dev services with a security-first edge.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card" data-animate>
+          <div class="service-icon">⌁</div>
+          <h3>Custom Web Apps</h3>
+          <p>Responsive, fast interfaces for portfolios, dashboards, school projects, business sites, and useful tools.</p>
+        </article>
+        <article class="service-card" data-animate>
+          <div class="service-icon">◈</div>
+          <h3>Security-Minded Builds</h3>
+          <p>Clean authentication thinking, safer forms, digital hygiene, and basic vulnerability awareness baked in early.</p>
+        </article>
+        <article class="service-card" data-animate>
+          <div class="service-icon">✦</div>
+          <h3>UI Experiments</h3>
+          <p>Interactive landing pages, parallax scenes, animations, and small creative tools that feel memorable.</p>
+        </article>
+        <article class="service-card" data-animate>
+          <div class="service-icon">▣</div>
+          <h3>Optimization</h3>
+          <p>Performance cleanup, mobile polish, accessibility passes, and practical improvements for existing sites.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== TECH MARQUEE =================== -->
+  <div class="marquee-container" aria-hidden="true">
+    <div class="marquee-content">
+      <span>Next.js</span><span>React</span><span>JavaScript</span><span>Python</span><span>Linux</span><span>Nmap</span><span>Wireshark</span><span>GitHub</span>
+      <span>Next.js</span><span>React</span><span>JavaScript</span><span>Python</span><span>Linux</span><span>Nmap</span><span>Wireshark</span><span>GitHub</span>
+    </div>
+  </div>
 
   <!-- =================== EXPERIENCE =================== -->
   <section class="section experience-section" id="experience">
@@ -263,95 +342,31 @@
         <span class="section-label">// projects</span>
         <h2 class="section-title">What I've Built</h2>
       </div>
-      <div class="projects-grid">
+      <div class="projects-grid" id="project-container">
+      </div>
+    </div>
+  </section>
 
-        <div class="project-card" data-animate id="proj-1">
-          <div class="project-card-top">
-            <div class="project-icon">🔒</div>
-            <div class="project-status">In Progress</div>
-          </div>
-          <h3 class="project-title">Cybersecurity Practice Lab Work</h3>
-          <p class="project-desc">
-            Hands-on security lab exercises exploring threat detection, network scanning, vulnerability assessment, and
-            basic ethical hacking techniques. A practical space to reinforce internship learnings.
-          </p>
-          <div class="project-tools">
-            <span class="tool-tag">Kali Linux</span>
-            <span class="tool-tag">Wireshark</span>
-            <span class="tool-tag">Nmap</span>
-            <span class="tool-tag">VMs</span>
-          </div>
-          <div class="project-actions">
-            <a href="https://github.com/Michealadetuga" target="_blank" rel="noopener" class="btn btn-sm btn-outline"
-              id="proj-1-github">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
-                <path
-                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-              </svg>
-              GitHub
-            </a>
-            <a href="#" class="btn btn-sm btn-primary" id="proj-1-preview">Preview →</a>
-          </div>
-        </div>
-
-        <div class="project-card featured" data-animate id="proj-2">
-          <div class="project-card-top">
-            <div class="project-icon">⚡</div>
-            <div class="project-status purple">Vibecoding</div>
-          </div>
-          <h3 class="project-title">Mini Coding Projects <span class="proj-sub">(Vibecoding Experiments)</span></h3>
-          <p class="project-desc">
-            A collection of small, creative, and experimental coding projects born from curiosity and caffeine. From fun
-            UI experiments to mini-tools — this is where ideas come to life with no rules, just vibes.
-          </p>
-          <div class="project-tools">
-            <span class="tool-tag">HTML/CSS</span>
-            <span class="tool-tag">JavaScript</span>
-            <span class="tool-tag">Python</span>
-            <span class="tool-tag">APIs</span>
-          </div>
-          <div class="project-actions">
-            <a href="https://github.com/Michealadetuga" target="_blank" rel="noopener" class="btn btn-sm btn-outline"
-              id="proj-2-github">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
-                <path
-                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-              </svg>
-              GitHub
-            </a>
-            <a href="#" class="btn btn-sm btn-primary" id="proj-2-preview">Preview →</a>
-          </div>
-        </div>
-
-        <div class="project-card" data-animate id="proj-3">
-          <div class="project-card-top">
-            <div class="project-icon">📚</div>
-            <div class="project-status mixed">Academic</div>
-          </div>
-          <h3 class="project-title">School Assignments & Tech Experiments</h3>
-          <p class="project-desc">
-            Academic projects and tech experiments that go beyond the classroom. Applying theory to practice through
-            assignments, demos, and personal research work that bridges coursework with real-world application.
-          </p>
-          <div class="project-tools">
-            <span class="tool-tag">Python</span>
-            <span class="tool-tag">C++</span>
-            <span class="tool-tag">Linux</span>
-            <span class="tool-tag">Research</span>
-          </div>
-          <div class="project-actions">
-            <a href="https://github.com/Michealadetuga" target="_blank" rel="noopener" class="btn btn-sm btn-outline"
-              id="proj-3-github">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
-                <path
-                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-              </svg>
-              GitHub
-            </a>
-            <a href="#" class="btn btn-sm btn-primary" id="proj-3-preview">Preview →</a>
-          </div>
-        </div>
-
+  <!-- =================== TESTIMONIALS =================== -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <span class="section-label">// feedback</span>
+        <h2 class="section-title">What People Notice</h2>
+      </div>
+      <div class="testimonials-grid" id="testimonials-grid">
+        <article class="testimonial-card" data-animate>
+          <p>"Curious, fast-learning, and serious about improving with every project."</p>
+          <div><strong>Academic Mentor</strong><span>Computer Science</span></div>
+        </article>
+        <article class="testimonial-card" data-animate>
+          <p>"Micheal brings a good mix of security awareness and willingness to build."</p>
+          <div><strong>Internship Lead</strong><span>Cybersecurity</span></div>
+        </article>
+        <article class="testimonial-card" data-animate>
+          <p>"He experiments quickly, communicates clearly, and keeps pushing the work forward."</p>
+          <div><strong>Project Partner</strong><span>Development</span></div>
+        </article>
       </div>
     </div>
   </section>
@@ -378,6 +393,13 @@
           <p>0915 190 7027</p>
           <a href="tel:09151907027" class="btn btn-primary" id="btn-call">Call Now</a>
         </div>
+        <div class="contact-card" data-animate id="contact-whatsapp">
+          <div class="contact-icon">💬</div>
+          <h3>WhatsApp</h3>
+          <p>Quick project chat</p>
+          <a href="https://wa.me/2349151907027" target="_blank" rel="noopener" class="btn btn-primary"
+            id="btn-whatsapp">Chat Now</a>
+        </div>
         <div class="contact-card" data-animate id="contact-github">
           <div class="contact-icon">
             <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
@@ -403,7 +425,7 @@
         </a>
         <p class="footer-text">
           Crafted with ✨ vibes & 🔐 security in mind.<br />
-          © 2025 Micheal Adetuga · Lagos, Nigeria
+          © 2026 Micheal Adetuga · Lagos, Nigeria
         </p>
         <div class="footer-links">
           <a href="https://github.com/Michealadetuga" target="_blank" rel="noopener" class="footer-link"

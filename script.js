@@ -43,7 +43,7 @@
   });
 
   function updateActiveNavLink() {
-    const sections = ['about', 'skills', 'experience', 'projects', 'contact'];
+    const sections = ['about', 'skills', 'services', 'experience', 'projects', 'testimonials', 'contact'];
     let current = '';
     sections.forEach(id => {
       const el = document.getElementById(id);
@@ -223,11 +223,13 @@
 
 /* ---- 7. PROJECT CARD SPOTLIGHT EFFECT ---- */
 (function initCardSpotlight() {
-  document.querySelectorAll('.project-card, .skill-category, .contact-card').forEach(card => {
+  document.querySelectorAll('.project-card, .skill-category, .service-card, .testimonial-card, .contact-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 100;
       const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--spot-x', `${x}%`);
+      card.style.setProperty('--spot-y', `${y}%`);
       card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(99,130,255,0.06) 0%, var(--bg-card) 60%)`;
     });
     card.addEventListener('mouseleave', () => {
@@ -237,7 +239,7 @@
 })();
 
 
-/* ---- 8. COUNTER ANIMATION (for future use) ---- */
+/* ---- 8. COUNTER ANIMATION ---- */
 function animateCounter(el, start, end, duration) {
   let startTime = null;
   function step(timestamp) {
@@ -249,16 +251,273 @@ function animateCounter(el, start, end, duration) {
   requestAnimationFrame(step);
 }
 
+(function initStatsCounters() {
+  const stats = document.querySelectorAll('.stat-val[data-count]');
+  if (!stats.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = Number(el.dataset.count);
+      animateCounter(el, 0, target, target > 100 ? 1200 : 900);
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.7 });
+
+  stats.forEach(stat => observer.observe(stat));
+})();
+
+
+/* ---- 8B. DYNAMIC PROJECTS FROM GITHUB ---- */
+(function initDynamicProjects() {
+  const container = document.getElementById('project-container');
+  if (!container) return;
+
+  const githubUser = 'Michealadetuga';
+  const fallbackProjects = [
+    {
+      title: 'Cybersecurity Practice Lab Work',
+      cat: 'Security Lab',
+      desc: 'Hands-on exercises exploring network scanning, vulnerability awareness, digital hygiene, and basic incident response.',
+      language: 'Kali / Nmap',
+      url: `https://github.com/${githubUser}`,
+      featured: false,
+    },
+    {
+      title: 'notrllymike Portfolio',
+      cat: 'Web Portfolio',
+      desc: 'A premium dark portfolio concept with dynamic projects, services, feedback, and polished interaction patterns.',
+      language: 'HTML / CSS / JS',
+      url: 'https://notrllymike.vercel.app/',
+      featured: true,
+    },
+    {
+      title: 'Mini Coding Experiments',
+      cat: 'Creative Code',
+      desc: 'Small tools and UI experiments built while learning, testing ideas, and improving practical development skill.',
+      language: 'JavaScript',
+      url: `https://github.com/${githubUser}`,
+      featured: false,
+    },
+  ];
+
+  function escapeHTML(value) {
+    return String(value || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function formatName(name) {
+    return String(name || 'Project')
+      .replace(/[-_]+/g, ' ')
+      .replace(/\b\w/g, char => char.toUpperCase());
+  }
+
+  function render(projects) {
+    container.innerHTML = projects.map((project, index) => {
+      const isFeatured = project.featured || index === 1;
+      const statusClass = isFeatured ? 'purple' : (index % 3 === 2 ? 'mixed' : '');
+      const status = project.cat || project.language || 'Project';
+      const tools = (project.language ? [project.language] : [])
+        .concat(project.topics || [])
+        .slice(0, 4);
+
+      return `
+        <article class="project-card github-card ${isFeatured ? 'featured' : ''}" data-animate>
+          <div class="project-card-top">
+            <div class="project-icon">${isFeatured ? '⚡' : '⌘'}</div>
+            <div class="project-status ${statusClass}">${escapeHTML(status)}</div>
+          </div>
+          <h3 class="project-title">${escapeHTML(formatName(project.title || project.name))}</h3>
+          <p class="project-desc">${escapeHTML(project.desc || project.description || 'A software project from my GitHub workspace.')}</p>
+          <div class="project-meta">
+            <span>${escapeHTML(project.updated || 'Active build')}</span>
+            <span>${project.stars ? `${project.stars} stars` : 'Open source'}</span>
+          </div>
+          <div class="project-tools">
+            ${tools.map(tool => `<span class="tool-tag">${escapeHTML(tool)}</span>`).join('')}
+          </div>
+          <div class="project-actions">
+            <a href="${escapeHTML(project.url || project.html_url || `https://github.com/${githubUser}`)}" target="_blank" rel="noopener" class="btn btn-sm btn-outline">View Project</a>
+          </div>
+        </article>
+      `;
+    }).join('');
+
+    const animated = container.querySelectorAll('[data-animate]');
+    animated.forEach(el => el.classList.add('visible'));
+    initInteractiveCards(container);
+  }
+
+  function showLoading() {
+    container.innerHTML = '<div class="project-card loading">Syncing latest GitHub projects...</div>';
+  }
+
+  async function fetchGithubProjects() {
+    showLoading();
+    try {
+      const res = await fetch(`https://api.github.com/users/${githubUser}/repos?sort=updated&per_page=9`);
+      if (!res.ok) throw new Error('GitHub request failed');
+      const repos = await res.json();
+      const excluded = new Set(['michealadetuga', 'my-portfolio']);
+      const projects = repos
+        .filter(repo => !repo.fork && !excluded.has(repo.name.toLowerCase()))
+        .slice(0, 6)
+        .map(repo => ({
+          title: repo.name,
+          cat: repo.language || 'GitHub',
+          desc: repo.description,
+          language: repo.language || 'Code',
+          topics: repo.topics || [],
+          url: repo.homepage || repo.html_url,
+          updated: repo.updated_at ? `Updated ${new Date(repo.updated_at).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })}` : 'Recently updated',
+          stars: repo.stargazers_count,
+          featured: repo.homepage,
+        }));
+
+      render(projects.length ? projects : fallbackProjects);
+    } catch (error) {
+      render(fallbackProjects);
+    }
+  }
+
+  render(fallbackProjects);
+  fetchGithubProjects();
+})();
+
+
+/* ---- 8C. PREMIUM INTERACTIONS ---- */
+function initInteractiveCards(root = document) {
+  const cards = root.querySelectorAll('.project-card, .service-card, .testimonial-card');
+  cards.forEach(card => {
+    if (card.dataset.tiltReady) return;
+    card.dataset.tiltReady = 'true';
+
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const spotX = (x / rect.width) * 100;
+      const spotY = (y / rect.height) * 100;
+      const tiltX = ((y / rect.height) - 0.5) * -7;
+      const tiltY = ((x / rect.width) - 0.5) * 7;
+      card.style.setProperty('--spot-x', `${spotX}%`);
+      card.style.setProperty('--spot-y', `${spotY}%`);
+      card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-6px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+
+    card.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    card.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+}
+
+(function initPremiumInteractions() {
+  const progress = document.getElementById('scroll-progress');
+  const dot = document.getElementById('cursor-dot');
+  const outline = document.getElementById('cursor-outline');
+  const glow = document.getElementById('mouse-glow');
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+  window.addEventListener('scroll', () => {
+    if (!progress) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = max > 0 ? (window.scrollY / max) * 100 : 0;
+    progress.style.width = `${percent}%`;
+  }, { passive: true });
+
+  if (finePointer && dot && outline && glow) {
+    document.body.classList.add('has-custom-cursor');
+
+    window.addEventListener('pointermove', e => {
+      dot.style.left = `${e.clientX}px`;
+      dot.style.top = `${e.clientY}px`;
+      glow.style.left = `${e.clientX}px`;
+      glow.style.top = `${e.clientY}px`;
+      outline.animate({
+        left: `${e.clientX}px`,
+        top: `${e.clientY}px`,
+      }, { duration: 420, fill: 'forwards' });
+    }, { passive: true });
+
+    document.querySelectorAll('a, button, .project-card, .service-card, .testimonial-card, .skill-category').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+  }
+
+  initInteractiveCards();
+})();
+
 
 /* ---- 9. HERO PARALLAX ---- */
 (function initParallax() {
   const hero = document.querySelector('.hero');
   if (!hero) return;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    const overlay = hero.querySelector('.hero-bg-overlay');
-    if (overlay) overlay.style.transform = `translateY(${y * 0.2}px)`;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (prefersReducedMotion.matches) return;
+
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let currentScroll = 0;
+  let rafId = null;
+
+  function queueFrame() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(render);
+  }
+
+  function render() {
+    rafId = null;
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+    currentScroll += (window.scrollY - currentScroll) * 0.08;
+
+    hero.style.setProperty('--parallax-x', `${currentX.toFixed(2)}px`);
+    hero.style.setProperty('--parallax-y', `${currentY.toFixed(2)}px`);
+    hero.style.setProperty('--scroll-depth', `${Math.min(currentScroll, window.innerHeight).toFixed(2)}px`);
+
+    if (
+      Math.abs(targetX - currentX) > 0.1 ||
+      Math.abs(targetY - currentY) > 0.1 ||
+      Math.abs(window.scrollY - currentScroll) > 0.5
+    ) {
+      queueFrame();
+    }
+  }
+
+  hero.addEventListener('pointermove', e => {
+    const rect = hero.getBoundingClientRect();
+    const relX = (e.clientX - rect.left) / rect.width - 0.5;
+    const relY = (e.clientY - rect.top) / rect.height - 0.5;
+    targetX = relX * 42;
+    targetY = relY * 34;
+    queueFrame();
   }, { passive: true });
+
+  hero.addEventListener('pointerleave', () => {
+    targetX = 0;
+    targetY = 0;
+    queueFrame();
+  });
+
+  window.addEventListener('scroll', () => {
+    const overlay = hero.querySelector('.hero-bg-overlay');
+    if (overlay) overlay.style.transform = `translateY(${window.scrollY * 0.14}px)`;
+    queueFrame();
+  }, { passive: true });
+
+  queueFrame();
 })();
 
 
